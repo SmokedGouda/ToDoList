@@ -8,22 +8,26 @@
 
 import Foundation
 
+var userList = UserList()
+
 class UserList {
-    var name: String?
-    var toDoList: [String]
+    var name = ""
+    var toDoList = [String]()
     
-    init(name: String, toDoList: [String]) {
-        self.name = name
-        self.toDoList = toDoList
+//    init(name: String, toDoList: [String]) {
+//        self.name = name
+//        self.toDoList = toDoList
+//    }
+    
+    func createListName(userListName: String) -> String {
+        name = userListName
+        return name
+        
     }
     
-    func nameList(userListName: String) {
-        
-        
-    }
-    
-    func addTaskToList(userTask: String) {
-        
+    func addTaskToList(userTask: String) -> [String] {
+        toDoList.append(userTask)
+        return toDoList
     }
     
     func editTaskInList() {
@@ -31,6 +35,10 @@ class UserList {
     }
     
     func deleteTaskFromList(userTask: String) {
-        
+        for (index, value) in toDoList.enumerate() {
+            if userTask == value {
+                toDoList.removeAtIndex(index)
+            }
+        }
     }
 }

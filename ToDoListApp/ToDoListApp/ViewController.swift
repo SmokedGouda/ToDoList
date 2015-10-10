@@ -14,11 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var newTaskField: UITextField!
     @IBOutlet weak var editTaskField: UITextField!
     @IBOutlet weak var deleteTaskField: UITextField!
-    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        clearAllTextFields()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,21 +31,34 @@ class ViewController: UIViewController {
     @IBAction func buttonPress(sender: UIButton) {
         switch sender.titleLabel!.text! {
             case "Create a New To Do List:":
-               
-            createNewListName(newListNameField.text!)
+                userList.createListName(newListNameField.text!)
+                newListNameField.text = nil
             case "Add Task:":
-                print("add task function")
+                userList.addTaskToList(newTaskField!.text!)
+                print(userList.toDoList)
+                newTaskField!.text = nil
+               
             case "Edit Task:":
                 print("edit task function")
             case "Delete Task:":
-                print("delete task function")
+                userList.deleteTaskFromList(deleteTaskField.text!)
+                deleteTaskField.text = nil
+                print(userList.toDoList)
             default:
                 print("nothing going on here")
         }
+    
     }
- 
-    func createNewListName(userListName: String) ->String {
-        return userListName
+    
+    func clearAllTextFields() {
+        newListNameField.text = ""
+        newTaskField.text = ""
+        editTaskField.text = ""
+        deleteTaskField.text = ""
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destinationViewController: ToDoListController = segue.destinationViewController as! ToDoListController
+    }
+    
 }
 

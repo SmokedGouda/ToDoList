@@ -12,12 +12,12 @@ class ToDoListController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var listNameLabel: UILabel!
     
-    let userToDoList = UserList(name: "To Do List", toDoList: [""])
+//    let userToDoList = UserList()
     let userToDoListTableIdentifier = "UserToDoListTableIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        listNameLabel.text = userToDoList.name
+        listNameLabel.text = userList.name
             }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +25,7 @@ class ToDoListController: UIViewController, UITableViewDataSource, UITableViewDe
             }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userToDoList.toDoList.count
+        return userList.toDoList.count
     }
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
             NSIndexPath) -> UITableViewCell {
@@ -33,7 +33,7 @@ class ToDoListController: UIViewController, UITableViewDataSource, UITableViewDe
                 if(cell == nil) {
                     cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: userToDoListTableIdentifier)
                 }
-                cell.textLabel?.text = userToDoList.toDoList[indexPath.row]
+                cell.textLabel?.text = userList.toDoList[indexPath.row]
                 return cell
         }
 }
